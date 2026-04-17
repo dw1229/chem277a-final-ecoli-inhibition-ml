@@ -3,7 +3,7 @@
 **Team:** Priscilla Vaskez · Trinity Ho · Yasemin Sucu · Dongwan Kim
 
 ## Project Idea
-Predict the antibacterial inhibition rate against *E. coli* (`INHIB_AVE_MEAN`) using molecular descriptors computed from small-molecule SMILES data. Given a set of physicochemical molecular features (for example: molecular weight, logP), our models learn to predict the continuous inhibition percentage directly. We train and compare three classical ML regression models.
+Predict the antibacterial inhibition rate against *E. coli* (`INHIB_AVE_MEAN`) using a combination of molecular descriptors computed from small-molecule SMILES data (for example:  molecular weight, logP, TPSA) and experimental features extracted directly from the `CO-ADD` dataset (for example:  INHIB_STD_MEAN, NASSAYS). Our models learn to predict the continuous inhibition percentage directly from these features. We train and compare three classical ML regression models.
 
 ## Dataset
 - Source: CO-ADD (Community for Open Antimicrobial Drug Discovery) database
