@@ -3,7 +3,7 @@
 **Team:** Priscilla Vaskez · Trinity Ho · Yasemin Sucu · Dongwan Kim
 
 ## Project Idea
-Predict the antibacterial inhibition rate against *E. coli* (`INHIB_AVE_MEAN`) using a combination of molecular descriptors computed from small-molecule SMILES data (for example:  molecular weight, logP, TPSA) and experimental features extracted directly from the `CO-ADD` dataset (for example:  INHIB_STD_MEAN, NASSAYS). Our models learn to predict the continuous inhibition percentage directly from these features. We train and compare three classical ML regression models.
+Predict the antibacterial inhibition rate against *E. coli* (`INHIB_AVE`) using a combination of molecular descriptors computed from small-molecule SMILES data (for example: molecular weight, logP, TPSA) and experimental features extracted directly from the CO-ADD dataset (for example: `INHIB_STD`, `NASSAYS`, `DMAX_AVE`, MIC-derived features). Our models learn to predict the continuous inhibition percentage directly from these features. We train and compare three classical ML regression models.
 
 ## Dataset
 - Source: CO-ADD (Community for Open Antimicrobial Drug Discovery) database
@@ -12,10 +12,10 @@ Predict the antibacterial inhibition rate against *E. coli* (`INHIB_AVE_MEAN`) u
 
 ## Basic Workflow
 1. Download complete CO-ADD CSV datasets.
-2. Filter *E. coli* rows from both files and merge on `COADD_ID` (inner join, ~4,174 compounds).
-3. Extract the `SMILES` column from the merged dataset and compute molecular descriptors using RDKit (MW, logP, TPSA, HBD, HBA, QED, etc.).
-4. Concatenate RDKit descriptors and CO-ADD experimental features (INHIB_STD_MEAN, NASSAYS_MAX, DMAX_AVE_MEAN, etc.) into a single pandas DataFrame, where `X = all features` and `y = INHIB_AVE_MEAN(regression target)`.
-5. Run EDA with visualizations to explore feature distributions and correlations.
-6. Preprocess features with StandardScaler and apply feature selection (Regularizaiton/PCA).
-7. Train and compare three classical regression models.
-8. Evaluate models using RMSE, MAE, R², and other metrics, and compare performance across models.
+2. Filter *E. coli* rows from both files and merge using exact experiment keys (`COADD_ID`, `STRAIN`, `ASSAY_ID`) so inhibition and dose-response values come from the same assay context.
+3. Keep exact-matched rows (~4,268 rows across ~4,174 unique compounds), drop unnecessary text columns like `COMPOUND_NAME`, and inspect missing values.
+4. Parse `DRVAL_MEDIAN` into `MIC_OPERATOR` + numeric MIC value, then convert mixed MIC units (`uM` / `ug/mL`) into a unified `MIC_VALUE_uM`.
+5. Compute RDKit descriptors from `SMILES` (MW, logP, TPSA, HBD, HBA, RotBonds, Rings, ArRings, QED) and append them to the merged table.
+6. Save the processed master table (`ecoli_merged_master_4268.csv`) for reuse.
+7. Define numeric feature columns, build `X` and `y` (`INHIB_AVE` as target), split train/test, and apply `StandardScaler`.
+8. Train and compare regression models, then evaluate using RMSE, MAE, R², and related metrics.
