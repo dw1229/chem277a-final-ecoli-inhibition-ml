@@ -1,0 +1,21 @@
+name: chem277a-project2
+channels:
+  - conda-forge
+  - defaults
+dependencies:
+  - python=3.11
+  - pip
+  - numpy
+  - pandas
+  - scipy
+  - matplotlib
+  - seaborn
+  - scikit-learn
+  - statsmodels
+  - rdkit
+  - jupyter
+  - ipykernel
+  - notebook
+  - pip:
+    - tensorflow
+    - umap-learn
