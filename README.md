@@ -49,3 +49,37 @@ Our final model is in `elasticnet_LogisticRegression_ml.ipynb`. Moving to top-10
 - Test-set metrics at the default 0.50 threshold of top10% inhibition classification `elasticnet_LogisticRegression_ml.ipynb`: `accuracy = 0.940`, `balanced accuracy = 0.852`, `precision = 0.685`, `recall = 0.741`, `F1 = 0.712`, `ROC-AUC = 0.950`.
 - Main metrics emphasized: precision, recall, F1, and ROC-AUC, since this is an imbalanced top 10% classification problem where finding true high-inhibition compounds matters more than raw accuracy alone.
 - Ablation tests: we compare the full model against simplified versions to show why the engineered Tanimoto similarity features based on top 10% inhibition compounds and assay-aware features are useful.
+
+
+# Project Code Run — Setup
+
+## Requirements
+- Conda (Anaconda or Miniconda)
+- Make
+
+---
+
+## Setup Instructions
+
+### 1. Create environment
+```bash
+make create
+```
+
+### 2. Install packages
+```bash
+make install
+```
+
+### 3. Activate environment
+```bash
+conda activate chem277a_project2_env
+```
+
+---
+
+## Makefile Commands
+
+- `make create` → create Conda environment  
+- `make install` → install dependencies  
+- `make activate` → show activation command  
