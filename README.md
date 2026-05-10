@@ -2,6 +2,9 @@
 
 **Team:** Priscilla Vaskez · Trinity Ho · Yasemin Sucu · Dongwan Kim
 
+## Repository
+https://github.com/dw1229/chem277a-final-ecoli-inhibition-ml
+
 ## Introduction
 CO-ADD is a community antimicrobial screening dataset that reports how submitted small molecules behave in biological assays against organisms such as *E. coli*. Our objective is to build an assay-aware model that can prioritize the strongest *E. coli* inhibitors, because structure-only prediction was not reliable enough with the basic descriptors alone. We therefore add feature engineering from molecular fingerprints, Tanimoto similarity features based on top-10% inhibition compounds, and assay context to improve the signal. `INHIB_AVE` comes from the primary inhibition screen, while `DMAX_AVE` comes from dose-response follow-up; because wet-lab teams may have one assay result before the other, learning the relationship between these assay readouts can help prioritize compounds for additional testing.
 
