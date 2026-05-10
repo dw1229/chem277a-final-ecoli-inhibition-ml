@@ -20,8 +20,8 @@ The final model uses stronger feature engineering from assay-context variables, 
 - Data format: CSV (`InhibitionData` + `DoseResponseData`)
 
 ## Notebook Roadmap
-1. `ecoli_inhibition_final.ipynb` 
-   **Start here for the final submission.** This is the main consolidated notebook and should be read first. It contains the full project story in one runnable workflow: CO-ADD data preparation, regression motivation, ANN/classification exploration, UMAP/KMeans checks, final assay-aware feature engineering, Elastic Net Logistic RegressionCV, final metrics, selected predictors, and ablation tests. If you want the final answer, read this notebook. If you want to see the trial-and-error path behind it, read the development notebooks below in order. For the final submitted analysis, this notebook is sufficient. For the trial-and-error path behind the final workflow, the development notebooks below can be read in order.
+1. `ecoli_inhibition_final.ipynb`  
+   **Start here for the final submission.** This is the main consolidated notebook and should be read first. It contains the full project story in one runnable workflow: CO-ADD data preparation, regression motivation, ANN exploration, SVM and GLM/logistic classification experiments, UMAP/KMeans checks, final assay-aware feature engineering, Elastic Net Logistic RegressionCV, final metrics, selected predictors, and ablation tests. For the final submitted analysis, this notebook is sufficient. For the trial-and-error path behind the final workflow, the development notebooks below can be read in order.
 2. `ecoli_inhibition_ml.ipynb`  
    Development notebook for the original data preparation and baseline exploration. It loads the two CO-ADD CSV files, filters for *E. coli*, merges inhibition and dose-response rows with exact experiment keys (`COADD_ID`, `STRAIN`, `ASSAY_ID`), parses MIC-related fields, computes initial RDKit descriptors, and saves the processed master table as `ecoli_merged_master_4268.csv`. It also contains early regression and exploratory checks that motivated moving away from exact-value regression.
 3. `ANN_ecoli.ipynb`  
@@ -32,8 +32,8 @@ The final model uses stronger feature engineering from assay-context variables, 
    Development notebook for the final Elastic Net Logistic Regression pipeline. It builds the larger assay-aware feature matrix and tests the sparse `LogisticRegressionCV` model. The same final modeling logic is integrated into `ecoli_inhibition_final.ipynb` for submission.
 
 ## Basic Workflow
-1. In `ecoli_inhibition_final.ipynb`, load the complete CO-ADD inhibition and dose-response CSV datasets.
-2. Filter both datasets to *E. coli* rows.
+1. In `ecoli_inhibition_final.ipynb`, load the complete CO-ADD inhibition and dose-response CSV datasets (this original data-loading workflow is also shown in `ecoli_inhibition_ml.ipynb`).
+2. Filter both datasets to *E. coli* rows (also shown in `ecoli_inhibition_ml.ipynb`).
 3. Merge rows using exact experiment keys (`COADD_ID`, `STRAIN`, `ASSAY_ID`) so inhibition and dose-response values refer to the same assay context.
 4. Create or load the processed master table (`ecoli_merged_master_4268.csv`) with 4,268 exact-matched rows and 4,174 unique compounds.
 5. Parse MIC-related fields (`DRVAL_MEDIAN`, `MIC_OPERATOR`, `MIC_VALUE_uM`) and compute molecular descriptors from `SMILES`.
