@@ -13,6 +13,7 @@ dependencies:
   - scikit-learn
   - statsmodels
   - rdkit
+  - nltk
   - jupyter
   - ipykernel
   - notebook
@@ -20,3 +21,4 @@ dependencies:
     - tensorflow
     - umap-learn
     - imbalanced-learn
+    - pyclustering
