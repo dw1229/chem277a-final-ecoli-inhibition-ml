@@ -29,6 +29,11 @@ The second variant uses SMOTE's expanded training set to support a deeper archit
 
 Threshold tuning was also performed on the regularized ANN to characterize the precision-recall trade-off across operating points (Esposito et al. 2021). At the default threshold of 0.50 the model favors recall on the active class (0.605 with precision 0.553); at the F1-optimal threshold of 0.78 the model favors precision (0.723 with recall 0.547). The ROC-AUC of 0.886 confirms the classifier is well-calibrated across thresholds, so the choice of operating point is a downstream-application question rather than a model-quality question. For primary screening, where recovering as many true actives as possible matters more than false-positive cost, the lower threshold is preferred. For hit-list confirmation, where false positives carry more cost, the higher threshold is preferred. Reporting both rather than picking one was a deliberate choice, since the optimal operating point depends on how the predictions feed into subsequent experimental work.
 
+## Contrubutions
+
+**Yasemin Sucu**
+
+I drafted the Introduction and Methods sections, and the Discussion text for the ANN improvements. I built the extended ANN regularization study (SMOTE oversampling, two-layer architecture, threshold tuning, ROC and PR-AUC analysis) that builds on Priscilla's V3 model.
 
 
 ## References
